@@ -1,4 +1,4 @@
-package com.nexusy.data;
+package com.nexusy.glp.data;
 
 /**
  * @author lanhuidong
