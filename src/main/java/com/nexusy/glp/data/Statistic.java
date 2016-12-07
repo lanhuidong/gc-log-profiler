@@ -12,11 +12,21 @@ public class Statistic {
 
     private List<ParNewData> parNewDatas;
 
+    private List<DefNewData> defNewDatas;
+
     public List<ParNewData> getParNewDatas() {
         return parNewDatas;
     }
 
     public void setParNewDatas(List<ParNewData> parNewDatas) {
         this.parNewDatas = parNewDatas;
+    }
+
+    public List<DefNewData> getDefNewDatas() {
+        return defNewDatas;
+    }
+
+    public void setDefNewDatas(List<DefNewData> defNewDatas) {
+        this.defNewDatas = defNewDatas;
     }
 }

@@ -1,5 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
+import com.nexusy.glp.data.DefNewData;
 import com.nexusy.glp.data.ParNewData;
 import com.nexusy.glp.data.Statistic;
 import com.nexusy.glp.parser.GCLogParser;
@@ -15,6 +16,8 @@ public class SimpleLogParser implements GCLogParser {
 
     private ParNewParser parNewParser = new ParNewParser();
 
+    private DefNewParser defNewParser = new DefNewParser();
+
     @Override
     public Statistic parse(File gcLogFile) {
         Statistic statistic = new Statistic();
@@ -27,6 +30,12 @@ public class SimpleLogParser implements GCLogParser {
                         statistic.setParNewDatas(new ArrayList<>());
                     }
                     statistic.getParNewDatas().add(data);
+                } else if (line.contains("[DefNew:")) {
+                    DefNewData data = defNewParser.parse(line);
+                    if (statistic.getDefNewDatas() == null) {
+                        statistic.setDefNewDatas(new ArrayList<>());
+                    }
+                    statistic.getDefNewDatas().add(data);
                 }
             }
         } catch (IOException e) {
