@@ -12,7 +12,7 @@ public class Statistic {
 
     private List<ParNewData> parNewDatas;
 
-    private List<DefNewData> defNewDatas;
+    private List<SerialGCData> defNewDatas;
 
     public List<ParNewData> getParNewDatas() {
         return parNewDatas;
@@ -22,11 +22,11 @@ public class Statistic {
         this.parNewDatas = parNewDatas;
     }
 
-    public List<DefNewData> getDefNewDatas() {
+    public List<SerialGCData> getDefNewDatas() {
         return defNewDatas;
     }
 
-    public void setDefNewDatas(List<DefNewData> defNewDatas) {
+    public void setDefNewDatas(List<SerialGCData> defNewDatas) {
         this.defNewDatas = defNewDatas;
     }
 }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  * @author lanhuidong
  * @since 2016-12-07
  */
-public class DefNewData {
+public class SerialGCData {
 
     /**
      * GC开始时间

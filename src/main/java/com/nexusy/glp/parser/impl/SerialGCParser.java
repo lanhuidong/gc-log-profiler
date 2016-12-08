@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.DefNewData;
+import com.nexusy.glp.data.SerialGCData;
 import com.nexusy.glp.parser.GCLogLineParser;
 import com.nexusy.glp.util.StringUtil;
 
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * @author lanhuidong
  * @since 2016-12-07
  */
-public class DefNewParser implements GCLogLineParser<DefNewData> {
+public class SerialGCParser implements GCLogLineParser<SerialGCData> {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
@@ -51,8 +51,8 @@ public class DefNewParser implements GCLogLineParser<DefNewData> {
     private static final Pattern pattern = Pattern.compile(regex);
 
     @Override
-    public DefNewData parse(String line) {
-        DefNewData data = new DefNewData();
+    public SerialGCData parse(String line) {
+        SerialGCData data = new SerialGCData();
         data.setGcName("DefNew");
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()) {

@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.DefNewData;
+import com.nexusy.glp.data.SerialGCData;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,17 +11,17 @@ import java.time.format.DateTimeFormatter;
  * @author lanhuidong
  * @since 2016-12-08
  */
-public class DefNewGCTest {
+public class SerialGCTest {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    private DefNewParser parser = new DefNewParser();
+    private SerialGCParser parser = new SerialGCParser();
 
     @Test
     public void testSerialMinorGCLogJDK8() {
         String line = "2016-12-07T14:50:54.719-0800: 0.092: [GC (Allocation Failure) 0.092: [DefNew: 5656K->0K(6144K),"
                 + " 0.0078575 secs] 9752K->9644K(19840K), 0.0079072 secs] [Times: user=0.01 sys=0.00, real=0.01 secs] ";
-        DefNewData data = parser.parse(line);
+        SerialGCData data = parser.parse(line);
         Assert.assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-07T14:50:54.719-0800", formatter);
         Assert.assertEquals(dateTime, data.getDateTime());
@@ -47,7 +47,7 @@ public class DefNewGCTest {
                 + "[DefNew: 5219K->5219K(6144K), 0.0000334 secs]0.102: [Tenured: 9644K->4523K(13696K), 0.0032665 secs] "
                 + "14864K->4523K(19840K), [Metaspace: 2731K->2731K(1056768K)], 0.0033682 secs] "
                 + "[Times: user=0.00 sys=0.00, real=0.01 secs] ";
-        DefNewData data = parser.parse(line);
+        SerialGCData data = parser.parse(line);
         Assert.assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-07T14:50:54.729-0800", formatter);
         Assert.assertEquals(dateTime, data.getDateTime());
@@ -80,7 +80,7 @@ public class DefNewGCTest {
                 + "2016-12-08T08:40:17.994+0800: 1.030: [Tenured: 3707K->3695K(13696K), 0.0047268 secs] "
                 + "3707K->3695K(19840K), [Metaspace: 2581K->2581K(1056768K)], 0.0047817 secs] "
                 + "[Times: user=0.00 sys=0.00, real=0.00 secs] ";
-        DefNewData data = parser.parse(line);
+        SerialGCData data = parser.parse(line);
         Assert.assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T08:40:17.994+0800", formatter);
         Assert.assertEquals(dateTime, data.getDateTime());
@@ -108,7 +108,7 @@ public class DefNewGCTest {
         String line = "2016-12-08T09:50:53.521+0800: 3.596: [GC2016-12-08T09:50:53.521+0800: 3.596: ["
                 + "DefNew: 5122K->0K(6144K), 0.0031337 secs] 9675K->9673K(19840K), 0.0033012 secs] "
                 + "[Times: user=0.00 sys=0.00, real=0.00 secs] ";
-        DefNewData data = parser.parse(line);
+        SerialGCData data = parser.parse(line);
         Assert.assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T09:50:53.521+0800", formatter);
         Assert.assertEquals(dateTime, data.getDateTime());
@@ -134,7 +134,7 @@ public class DefNewGCTest {
                 + "[DefNew: 1147K->1147K(6144K), 0.0000193 secs]2016-12-08T09:43:00.637+0800: 0.157: "
                 + "[Tenured: 12745K->3529K(13696K), 0.0076335 secs] 13893K->3529K(19840K), "
                 + "[Perm : 2524K->2524K(21248K)], 0.0077254 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] ";
-        DefNewData data = parser.parse(line);
+        SerialGCData data = parser.parse(line);
         Assert.assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T09:43:00.637+0800", formatter);
         Assert.assertEquals(dateTime, data.getDateTime());
@@ -166,7 +166,7 @@ public class DefNewGCTest {
         String line = "2016-12-08T09:43:00.653+0800: 0.165: [Full GC2016-12-08T09:43:00.653+0800: 0.165: "
                 + "[Tenured: 3529K->3518K(13696K), 0.0095194 secs] 3529K->3518K(19840K), "
                 + "[Perm : 2524K->2523K(21248K)], 0.0095751 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] ";
-        DefNewData data = parser.parse(line);
+        SerialGCData data = parser.parse(line);
         Assert.assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T09:43:00.653+0800", formatter);
         Assert.assertEquals(dateTime, data.getDateTime());
