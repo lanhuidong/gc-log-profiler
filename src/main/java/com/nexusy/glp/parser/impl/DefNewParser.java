@@ -19,14 +19,18 @@ public class DefNewParser implements GCLogLineParser<DefNewData> {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    private static final String regex = "((?<datetime>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}-\\d{4}):\\s)?"
+    private static final String regex = "((?<datetime>\\d{4}(-\\d{2}){2}T(\\d{2}:){2}\\d{2}\\.\\d{3}[-|+]\\d{4}):\\s)?"
             + "(?<uptime>\\d+\\.\\d+):\\s"
-            + "\\[(?<flag>[\\w|\\s]+)"
+            + "\\[(?<flag>[a-zA-Z|\\s]+[a-zA-Z])"
+            + "("
             + "\\s\\((?<cause>[\\w|\\s]+)\\)"
+            + ")?"
+            + "("
             + ".*DefNew:\\s(?<youngUsageBfGC>\\d+)\\w"
             + "->(?<yongUsageAfGC>\\d+)\\w"
             + "\\((?<youngSize>\\d+)\\w\\)"
             + ",\\s(?<minorGCDuration>\\d+\\.\\d+)\\ssecs\\]"
+            + ")?"
             + "("
             + ".*\\[Tenured:\\s(?<oldUsageBfGC>\\d+)\\w"
             + "->(?<oldUsageAfGC>\\d+)\\w"
@@ -37,7 +41,7 @@ public class DefNewParser implements GCLogLineParser<DefNewData> {
             + "->(?<headUsageAfGC>\\d+)\\w"
             + "\\((?<heapSize>\\d+)\\w\\)"
             + "("
-            + ",\\s\\[Metaspace:\\s(?<metaspaceUsageBfGC>\\d+)\\w"
+            + ",\\s\\[(Metaspace|Perm\\s):\\s(?<metaspaceUsageBfGC>\\d+)\\w"
             + "->(?<metaspaceUsageAfGC>\\d+)\\w"
             + "\\((?<metaspaceSize>\\d+)\\w\\)\\]"
             + ")?"
@@ -68,14 +72,16 @@ public class DefNewParser implements GCLogLineParser<DefNewData> {
             String cause = matcher.group("cause");
             data.setCause(cause);
 
-            long youngUsageBfGC = Long.valueOf(matcher.group("youngUsageBfGC"));
-            data.setYoungGenUsageBfGC(youngUsageBfGC);
-            long yongUsageAfGC = Long.valueOf(matcher.group("yongUsageAfGC"));
-            data.setYoungGenUsageAfGC(yongUsageAfGC);
-            long youngSize = Long.valueOf(matcher.group("youngSize"));
-            data.setYongGenSize(youngSize);
-            double minorGCDuration = Double.valueOf(matcher.group("minorGCDuration"));
-            data.setMinorGCDuration(minorGCDuration);
+            if (line.contains("DefNew")) {
+                long youngUsageBfGC = Long.valueOf(matcher.group("youngUsageBfGC"));
+                data.setYoungGenUsageBfGC(youngUsageBfGC);
+                long yongUsageAfGC = Long.valueOf(matcher.group("yongUsageAfGC"));
+                data.setYoungGenUsageAfGC(yongUsageAfGC);
+                long youngSize = Long.valueOf(matcher.group("youngSize"));
+                data.setYongGenSize(youngSize);
+                double minorGCDuration = Double.valueOf(matcher.group("minorGCDuration"));
+                data.setMinorGCDuration(minorGCDuration);
+            }
 
             if (line.contains("Tenured")) {
                 long oldUsageBfGC = Long.valueOf(matcher.group("oldUsageBfGC"));

@@ -24,13 +24,13 @@ public class SimpleLogParser implements GCLogParser {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(gcLogFile)))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.contains("[ParNew:")) {
+                if (line.contains("ParNew")) {
                     ParNewData data = parNewParser.parse(line);
                     if (statistic.getParNewDatas() == null) {
                         statistic.setParNewDatas(new ArrayList<>());
                     }
                     statistic.getParNewDatas().add(data);
-                } else if (line.contains("[DefNew:")) {
+                } else if (line.contains("DefNew") || line.contains("Tenured")) {
                     DefNewData data = defNewParser.parse(line);
                     if (statistic.getDefNewDatas() == null) {
                         statistic.setDefNewDatas(new ArrayList<>());
