@@ -17,7 +17,7 @@ public class ParNewParser implements GCLogLineParser<ParNewData> {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
-    private static final String regex = "((?<datetime>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}-\\d{4}):\\s)?"
+    private static final String regex = "((?<datetime>\\d{4}(-\\d{2}){2}T(\\d{2}:){2}\\d{2}\\.\\d{3}[-|+]\\d{4}):\\s)?"
             + "(?<uptime>\\d+\\.\\d+):\\s"
             + "\\[(?<flag>\\w+)"
             + "\\s\\((?<cause>[\\w|\\s]+)\\)"
