@@ -18,7 +18,7 @@ public class CMSInitMarkPhaseTest {
     private CMSInitMarkParser parser = new CMSInitMarkParser();
 
     @Test
-    public void testInitMark() {
+    public void testInitMarkJDK8() {
         String line = "2016-12-13T15:43:51.496+0800: 0.417: [GC (CMS Initial Mark) [1 CMS-initial-mark: 6790K(20480K)]"
                 + " 7814K(29696K), 0.0000744 secs] [Times: user=0.01 sys=0.01, real=0.01 secs] ";
         CMSInitialMarkData data = parser.parse(line);

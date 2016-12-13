@@ -36,7 +36,7 @@ public class CMSFinalRemarkData {
 
     private long heapSize;
 
-    private long duration;
+    private double duration;
 
     private double userTime;
 
@@ -156,11 +156,11 @@ public class CMSFinalRemarkData {
         this.heapSize = heapSize;
     }
 
-    public long getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(long duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 
