@@ -1,18 +1,12 @@
 package com.nexusy.glp.data;
 
-import java.time.LocalDateTime;
-
 /**
  * @author lanhuidong
  * @since 2016-12-08
  */
-public class CMSInitialMarkData {
+public class CMSInitialMarkData extends GCData {
 
-    private LocalDateTime dateTime;
-
-    private long uptime;
-
-    private String phase;
+    private CMSPhase phase;
 
     private long oldGenUsage;
 
@@ -24,33 +18,11 @@ public class CMSInitialMarkData {
 
     private double duration;
 
-    private double userTime;
-
-    private double sysTime;
-
-    private double realTime;
-
-    public LocalDateTime getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
-    }
-
-    public long getUptime() {
-        return uptime;
-    }
-
-    public void setUptime(long uptime) {
-        this.uptime = uptime;
-    }
-
-    public String getPhase() {
+    public CMSPhase getPhase() {
         return phase;
     }
 
-    public void setPhase(String phase) {
+    public void setPhase(CMSPhase phase) {
         this.phase = phase;
     }
 
@@ -94,27 +66,4 @@ public class CMSInitialMarkData {
         this.duration = duration;
     }
 
-    public double getUserTime() {
-        return userTime;
-    }
-
-    public void setUserTime(double userTime) {
-        this.userTime = userTime;
-    }
-
-    public double getSysTime() {
-        return sysTime;
-    }
-
-    public void setSysTime(double sysTime) {
-        this.sysTime = sysTime;
-    }
-
-    public double getRealTime() {
-        return realTime;
-    }
-
-    public void setRealTime(double realTime) {
-        this.realTime = realTime;
-    }
 }

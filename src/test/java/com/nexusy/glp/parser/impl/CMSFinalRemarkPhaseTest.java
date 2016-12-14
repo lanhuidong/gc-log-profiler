@@ -29,7 +29,7 @@ public class CMSFinalRemarkPhaseTest extends GCLogLineParserTest {
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-13T15:43:51.700+0800", formatter);
         assertEquals(dateTime, data.getDateTime());
         assertEquals(621, data.getUptime());
-        assertEquals("CMS Final Remark", data.getPhase());
+        assertEquals("CMS Final Remark", data.getPhase().toString());
         assertEquals(1024L, data.getYoungGenUsage());
         assertEquals(9216L, data.getYoungGenSize());
         assertEquals(0.0002099, data.getRescanDuration(), 0.00000001);

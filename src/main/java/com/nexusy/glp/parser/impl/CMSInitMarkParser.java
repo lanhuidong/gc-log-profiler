@@ -1,6 +1,7 @@
 package com.nexusy.glp.parser.impl;
 
 import com.nexusy.glp.data.CMSInitialMarkData;
+import com.nexusy.glp.data.CMSPhase;
 import com.nexusy.glp.parser.GCLogLineParser;
 import com.nexusy.glp.util.StringUtil;
 
@@ -29,7 +30,7 @@ public class CMSInitMarkParser implements GCLogLineParser<CMSInitialMarkData> {
     @Override
     public CMSInitialMarkData parse(String line) {
         CMSInitialMarkData data = new CMSInitialMarkData();
-        data.setPhase("CMS Initial Mark");
+        data.setPhase(CMSPhase.InitialMark);
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()) {
 

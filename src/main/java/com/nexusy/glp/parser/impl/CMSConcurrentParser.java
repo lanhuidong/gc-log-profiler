@@ -1,6 +1,7 @@
 package com.nexusy.glp.parser.impl;
 
 import com.nexusy.glp.data.CMSConcurrentData;
+import com.nexusy.glp.data.CMSPhase;
 import com.nexusy.glp.parser.GCLogLineParser;
 import com.nexusy.glp.util.StringUtil;
 
@@ -40,7 +41,7 @@ public class CMSConcurrentParser implements GCLogLineParser<CMSConcurrentData> {
             data.setUptime(uptime);
 
             String phase = matcher.group("phase");
-            data.setPhase(phase);
+            data.setPhase(CMSPhase.string2Enum(phase));
 
             double elapsedTime = Double.valueOf(matcher.group("elapsedTime"));
             data.setElapsedTime(elapsedTime);

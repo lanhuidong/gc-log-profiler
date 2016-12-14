@@ -23,7 +23,7 @@ public class CMSInitMarkPhaseTest extends GCLogLineParserTest {
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-13T15:43:51.496+0800", formatter);
         assertEquals(dateTime, data.getDateTime());
         assertEquals(417, data.getUptime());
-        assertEquals("CMS Initial Mark", data.getPhase());
+        assertEquals("CMS Initial Mark", data.getPhase().toString());
         assertEquals(6790L, data.getOldGenUsage());
         assertEquals(20480L, data.getOldGenSize());
         assertEquals(7814L, data.getHeapUsage());

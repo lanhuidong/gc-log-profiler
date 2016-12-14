@@ -1,6 +1,7 @@
 package com.nexusy.glp.parser.impl;
 
 import com.nexusy.glp.data.CMSFinalRemarkData;
+import com.nexusy.glp.data.CMSPhase;
 import com.nexusy.glp.parser.GCLogLineParser;
 import com.nexusy.glp.util.StringUtil;
 
@@ -34,7 +35,7 @@ public class CMSFinalRemarkParser implements GCLogLineParser<CMSFinalRemarkData>
     @Override
     public CMSFinalRemarkData parse(String line) {
         CMSFinalRemarkData data = new CMSFinalRemarkData();
-        data.setPhase("CMS Final Remark");
+        data.setPhase(CMSPhase.FinalRemark);
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()) {
             String dateTimeString = matcher.group("datetime");

@@ -23,7 +23,7 @@ public class CMSConcurrentPhaseTest extends GCLogLineParserTest {
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-13T15:43:55.509+0800", formatter);
         assertEquals(dateTime, data.getDateTime());
         assertEquals(4430, data.getUptime());
-        assertEquals("CMS-concurrent-mark", data.getPhase());
+        assertEquals("CMS-concurrent-mark", data.getPhase().toString());
         assertEquals(0.001, data.getElapsedTime(), 0.0001);
         assertEquals(0.001, data.getClockTime(), 0.0001);
         assertEquals(0.00, data.getUserTime(), 0.001);
@@ -39,7 +39,7 @@ public class CMSConcurrentPhaseTest extends GCLogLineParserTest {
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-13T15:43:55.509+0800", formatter);
         assertEquals(dateTime, data.getDateTime());
         assertEquals(4430, data.getUptime());
-        assertEquals("CMS-concurrent-preclean", data.getPhase());
+        assertEquals("CMS-concurrent-preclean", data.getPhase().toString());
         assertEquals(0.000, data.getElapsedTime(), 0.0001);
         assertEquals(0.000, data.getClockTime(), 0.0001);
         assertEquals(0.00, data.getUserTime(), 0.001);
@@ -55,7 +55,7 @@ public class CMSConcurrentPhaseTest extends GCLogLineParserTest {
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-13T15:43:51.700+0800", formatter);
         assertEquals(dateTime, data.getDateTime());
         assertEquals(621, data.getUptime());
-        assertEquals("CMS-concurrent-abortable-preclean", data.getPhase());
+        assertEquals("CMS-concurrent-abortable-preclean", data.getPhase().toString());
         assertEquals(0.000, data.getElapsedTime(), 0.0001);
         assertEquals(0.203, data.getClockTime(), 0.0001);
         assertEquals(0.00, data.getUserTime(), 0.001);
@@ -71,7 +71,7 @@ public class CMSConcurrentPhaseTest extends GCLogLineParserTest {
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-13T15:43:55.953+0800", formatter);
         assertEquals(dateTime, data.getDateTime());
         assertEquals(4874, data.getUptime());
-        assertEquals("CMS-concurrent-sweep", data.getPhase());
+        assertEquals("CMS-concurrent-sweep", data.getPhase().toString());
         assertEquals(0.000, data.getElapsedTime(), 0.0001);
         assertEquals(0.000, data.getClockTime(), 0.0001);
         assertEquals(0.00, data.getUserTime(), 0.001);
@@ -87,7 +87,7 @@ public class CMSConcurrentPhaseTest extends GCLogLineParserTest {
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-13T15:43:55.953+0800", formatter);
         assertEquals(dateTime, data.getDateTime());
         assertEquals(4875, data.getUptime());
-        assertEquals("CMS-concurrent-reset", data.getPhase());
+        assertEquals("CMS-concurrent-reset", data.getPhase().toString());
         assertEquals(0.002, data.getElapsedTime(), 0.0001);
         assertEquals(0.002, data.getClockTime(), 0.0001);
         assertEquals(0.00, data.getUserTime(), 0.001);
