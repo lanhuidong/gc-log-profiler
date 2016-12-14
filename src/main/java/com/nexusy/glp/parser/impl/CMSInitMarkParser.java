@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
 public class CMSInitMarkParser extends AbstractGCLogLineParser<CMSInitialMarkData> {
 
     private static final String regex = ".*CMS-initial-mark:\\s"
-            + "(?<oldGenUsage>\\d+)\\w\\((?<oldGenSize>\\d+)\\w\\)\\]\\s"
-            + "(?<heapUsage>\\d+)\\w\\((?<heapSize>\\d+)\\w\\),\\s"
+            + "(?<oldGenUsage>\\d+\\w)\\((?<oldGenSize>\\d+\\w)\\)\\]\\s"
+            + "(?<heapUsage>\\d+\\w)\\((?<heapSize>\\d+\\w)\\),\\s"
             + "(?<duration>\\d+\\.\\d+)";
 
     private static final Pattern pattern = Pattern.compile(regex);
@@ -26,14 +26,14 @@ public class CMSInitMarkParser extends AbstractGCLogLineParser<CMSInitialMarkDat
         data.setPhase(CMSPhase.InitialMark);
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()) {
-            long oldGenUsage = StringUtil.toLong(matcher.group("oldGenUsage"));
+            long oldGenUsage = StringUtil.toBytes(matcher.group("oldGenUsage"));
             data.setOldGenUsage(oldGenUsage);
-            long oldGenSize = StringUtil.toLong(matcher.group("oldGenSize"));
+            long oldGenSize = StringUtil.toBytes(matcher.group("oldGenSize"));
             data.setOldGenSize(oldGenSize);
 
-            long heapUsage = StringUtil.toLong(matcher.group("heapUsage"));
+            long heapUsage = StringUtil.toBytes(matcher.group("heapUsage"));
             data.setHeapUsage(heapUsage);
-            long heapSize = StringUtil.toLong(matcher.group("heapSize"));
+            long heapSize = StringUtil.toBytes(matcher.group("heapSize"));
             data.setHeapSize(heapSize);
 
             double duration = StringUtil.toDouble(matcher.group("duration"));

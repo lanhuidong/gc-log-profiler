@@ -14,14 +14,14 @@ import java.util.regex.Pattern;
 public class CMSFinalRemarkParser extends AbstractGCLogLineParser<CMSFinalRemarkData> {
 
     private static final String regex = ".*YG occupancy:\\s"
-            + "(?<youngGenUsage>\\d+)\\s\\w\\s\\((?<youngGenSize>\\d+)\\s\\w\\)"
+            + "(?<youngGenUsage>\\d+\\s\\w)\\s\\((?<youngGenSize>\\d+\\s\\w)\\)"
             + ".*Rescan\\s\\(parallel\\)\\s,\\s(?<rescan>\\d+\\.\\d+)"
             + ".*weak refs processing,\\s(?<weakRefs>\\d+\\.\\d+)"
             + ".*class unloading,\\s(?<classUnloading>\\d+\\.\\d+)"
             + ".*scrub symbol table,\\s(?<symbolTable>\\d+\\.\\d+)"
             + ".*scrub string table,\\s(?<stringTable>\\d+\\.\\d+)"
-            + ".*CMS-remark:\\s(?<oldGenUsage>\\d+)\\w\\((?<oldGenSize>\\d+)\\w\\)\\]"
-            + "\\s(?<heapUsage>\\d+)\\w\\((?<heapSize>\\d+)\\w\\),\\s(?<duration>\\d+\\.\\d+)";
+            + ".*CMS-remark:\\s(?<oldGenUsage>\\d+\\w)\\((?<oldGenSize>\\d+\\w)\\)\\]"
+            + "\\s(?<heapUsage>\\d+\\w)\\((?<heapSize>\\d+\\w)\\),\\s(?<duration>\\d+\\.\\d+)";
 
     private static final Pattern pattern = Pattern.compile(regex);
 
@@ -31,9 +31,9 @@ public class CMSFinalRemarkParser extends AbstractGCLogLineParser<CMSFinalRemark
         data.setPhase(CMSPhase.FinalRemark);
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()) {
-            long youngGenUsage = StringUtil.toLong(matcher.group("youngGenUsage"));
+            long youngGenUsage = StringUtil.toBytes(matcher.group("youngGenUsage"));
             data.setYoungGenUsage(youngGenUsage);
-            long youngGenSize = StringUtil.toLong(matcher.group("youngGenSize"));
+            long youngGenSize = StringUtil.toBytes(matcher.group("youngGenSize"));
             data.setYoungGenSize(youngGenSize);
 
             double rescanDuration = StringUtil.toDouble(matcher.group("rescan"));
@@ -51,14 +51,14 @@ public class CMSFinalRemarkParser extends AbstractGCLogLineParser<CMSFinalRemark
             double stringTable = StringUtil.toDouble(matcher.group("stringTable"));
             data.setScrubStringTable(stringTable);
 
-            long oldGenUsage = StringUtil.toLong(matcher.group("oldGenUsage"));
+            long oldGenUsage = StringUtil.toBytes(matcher.group("oldGenUsage"));
             data.setOldGenUsage(oldGenUsage);
-            long oldGenSize = StringUtil.toLong(matcher.group("oldGenSize"));
+            long oldGenSize = StringUtil.toBytes(matcher.group("oldGenSize"));
             data.setOldGenSize(oldGenSize);
 
-            long heapUsage = StringUtil.toLong(matcher.group("heapUsage"));
+            long heapUsage = StringUtil.toBytes(matcher.group("heapUsage"));
             data.setHeapUsage(heapUsage);
-            long heapSize = StringUtil.toLong(matcher.group("heapSize"));
+            long heapSize = StringUtil.toBytes(matcher.group("heapSize"));
             data.setHeapSize(heapSize);
 
             double duration = StringUtil.toDouble(matcher.group("duration"));

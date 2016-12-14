@@ -19,24 +19,24 @@ public class SerialGCParser extends AbstractGCLogLineParser<SerialGCData> {
             + "\\s\\((?<cause>[\\w|\\s]+)\\)"
             + ")?"
             + "("
-            + ".*DefNew:\\s(?<youngUsageBfGC>\\d+)\\w"
-            + "->(?<yongUsageAfGC>\\d+)\\w"
-            + "\\((?<youngSize>\\d+)\\w\\)"
+            + ".*DefNew:\\s(?<youngUsageBfGC>\\d+\\w)"
+            + "->(?<yongUsageAfGC>\\d+\\w)"
+            + "\\((?<youngSize>\\d+\\w)\\)"
             + ",\\s(?<minorGCDuration>\\d+\\.\\d+)\\ssecs\\]"
             + ")?"
             + "("
-            + ".*\\[Tenured:\\s(?<oldUsageBfGC>\\d+)\\w"
-            + "->(?<oldUsageAfGC>\\d+)\\w"
-            + "\\((?<oldSize>\\d+)\\w\\)"
+            + ".*\\[Tenured:\\s(?<oldUsageBfGC>\\d+\\w)"
+            + "->(?<oldUsageAfGC>\\d+\\w)"
+            + "\\((?<oldSize>\\d+\\w)\\)"
             + ",\\s(?<fullGCDuration>\\d+\\.\\d+)\\ssecs\\]"
             + ")?"
-            + "\\s(?<heapUsageBfGC>\\d+)\\w"
-            + "->(?<headUsageAfGC>\\d+)\\w"
-            + "\\((?<heapSize>\\d+)\\w\\)"
+            + "\\s(?<heapUsageBfGC>\\d+\\w)"
+            + "->(?<headUsageAfGC>\\d+\\w)"
+            + "\\((?<heapSize>\\d+\\w)\\)"
             + "("
-            + ",\\s\\[(Metaspace|Perm\\s):\\s(?<metaspaceUsageBfGC>\\d+)\\w"
-            + "->(?<metaspaceUsageAfGC>\\d+)\\w"
-            + "\\((?<metaspaceSize>\\d+)\\w\\)\\]"
+            + ",\\s\\[(Metaspace|Perm\\s):\\s(?<metaspaceUsageBfGC>\\d+\\w)"
+            + "->(?<metaspaceUsageAfGC>\\d+\\w)"
+            + "\\((?<metaspaceSize>\\d+\\w)\\)\\]"
             + ")?"
             + ",\\s(?<totalDuration>\\d+\\.\\d+)\\ssecs\\]\\s";
 
@@ -55,40 +55,40 @@ public class SerialGCParser extends AbstractGCLogLineParser<SerialGCData> {
             data.setCause(cause);
 
             if (line.contains("DefNew")) {
-                long youngUsageBfGC = StringUtil.toLong(matcher.group("youngUsageBfGC"));
+                long youngUsageBfGC = StringUtil.toBytes(matcher.group("youngUsageBfGC"));
                 data.setYoungGenUsageBfGC(youngUsageBfGC);
-                long yongUsageAfGC = StringUtil.toLong(matcher.group("yongUsageAfGC"));
+                long yongUsageAfGC = StringUtil.toBytes(matcher.group("yongUsageAfGC"));
                 data.setYoungGenUsageAfGC(yongUsageAfGC);
-                long youngSize = StringUtil.toLong(matcher.group("youngSize"));
+                long youngSize = StringUtil.toBytes(matcher.group("youngSize"));
                 data.setYongGenSize(youngSize);
                 double minorGCDuration = StringUtil.toDouble(matcher.group("minorGCDuration"));
                 data.setMinorGCDuration(minorGCDuration);
             }
 
             if (line.contains("Tenured")) {
-                long oldUsageBfGC = StringUtil.toLong(matcher.group("oldUsageBfGC"));
+                long oldUsageBfGC = StringUtil.toBytes(matcher.group("oldUsageBfGC"));
                 data.setOldGenUsageBfGC(oldUsageBfGC);
-                long oldUsageAfGC = StringUtil.toLong(matcher.group("oldUsageAfGC"));
+                long oldUsageAfGC = StringUtil.toBytes(matcher.group("oldUsageAfGC"));
                 data.setOldGenUsageAfGC(oldUsageAfGC);
-                long oldSize = StringUtil.toLong(matcher.group("oldSize"));
+                long oldSize = StringUtil.toBytes(matcher.group("oldSize"));
                 data.setOldSize(oldSize);
                 double fullGCDuration = StringUtil.toDouble(matcher.group("fullGCDuration"));
                 data.setFullGCDuration(fullGCDuration);
             }
 
-            long heapUsageBfGC = StringUtil.toLong(matcher.group("heapUsageBfGC"));
+            long heapUsageBfGC = StringUtil.toBytes(matcher.group("heapUsageBfGC"));
             data.setHeapUsageBfGC(heapUsageBfGC);
-            long headUsageAfGC = StringUtil.toLong(matcher.group("headUsageAfGC"));
+            long headUsageAfGC = StringUtil.toBytes(matcher.group("headUsageAfGC"));
             data.setHeadUsageAfGC(headUsageAfGC);
-            long heapSize = StringUtil.toLong(matcher.group("heapSize"));
+            long heapSize = StringUtil.toBytes(matcher.group("heapSize"));
             data.setHeapSize(heapSize);
 
             if (line.contains("Metaspace") || line.contains("Perm")) {
-                long metaspaceUsageBfGC = StringUtil.toLong(matcher.group("metaspaceUsageBfGC"));
+                long metaspaceUsageBfGC = StringUtil.toBytes(matcher.group("metaspaceUsageBfGC"));
                 data.setMetaspaceUsageBfGC(metaspaceUsageBfGC);
-                long metaspaceUsageAfGC = StringUtil.toLong(matcher.group("metaspaceUsageAfGC"));
+                long metaspaceUsageAfGC = StringUtil.toBytes(matcher.group("metaspaceUsageAfGC"));
                 data.setMetaspaceUsageAfGC(metaspaceUsageAfGC);
-                long metaspaceSize = StringUtil.toLong(matcher.group("metaspaceSize"));
+                long metaspaceSize = StringUtil.toBytes(matcher.group("metaspaceSize"));
                 data.setMetaspaceSize(metaspaceSize);
             }
 

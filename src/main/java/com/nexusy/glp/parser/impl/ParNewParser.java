@@ -14,13 +14,13 @@ public class ParNewParser extends AbstractGCLogLineParser<ParNewData> {
 
     private static final String regex = "\\[(?<flag>\\w+)"
             + "\\s\\((?<cause>[\\w|\\s]+)\\)"
-            + ".*ParNew:\\s(?<youngUsageBfGC>\\d+)"
-            + "\\w->(?<yongUsageAfGC>\\d+)\\w"
-            + "\\((?<youngSize>\\d+)\\w\\)"
+            + ".*ParNew:\\s(?<youngUsageBfGC>\\d+\\w)"
+            + "->(?<yongUsageAfGC>\\d+\\w)"
+            + "\\((?<youngSize>\\d+\\w)\\)"
             + ",\\s(?<minorGCDuration>\\d+\\.\\d+)"
-            + "\\ssecs\\]\\s(?<heapUsageBfGC>\\d+)"
-            + "\\w->(?<headUsageAfGC>\\d+)"
-            + "\\w\\((?<heapSize>\\d+)\\w\\)"
+            + "\\ssecs\\]\\s(?<heapUsageBfGC>\\d+\\w)"
+            + "->(?<headUsageAfGC>\\d+\\w)"
+            + "\\((?<heapSize>\\d+\\w)\\)"
             + ",\\s(?<totalDuration>\\d+\\.\\d+)\\ssecs\\]\\s";
 
     private static final Pattern pattern = Pattern.compile(regex);
@@ -37,20 +37,20 @@ public class ParNewParser extends AbstractGCLogLineParser<ParNewData> {
             String cause = matcher.group("cause");
             data.setCause(cause);
 
-            long youngUsageBfGC = StringUtil.toLong(matcher.group("youngUsageBfGC"));
+            long youngUsageBfGC = StringUtil.toBytes(matcher.group("youngUsageBfGC"));
             data.setYoungGenUsageBfGC(youngUsageBfGC);
-            long yongUsageAfGC = StringUtil.toLong(matcher.group("yongUsageAfGC"));
+            long yongUsageAfGC = StringUtil.toBytes(matcher.group("yongUsageAfGC"));
             data.setYoungGenUsageAfGC(yongUsageAfGC);
-            long youngSize = StringUtil.toLong(matcher.group("youngSize"));
+            long youngSize = StringUtil.toBytes(matcher.group("youngSize"));
             data.setYongGenSize(youngSize);
             double minorGCDuration = StringUtil.toDouble(matcher.group("minorGCDuration"));
             data.setMinorGCDuration(minorGCDuration);
 
-            long heapUsageBfGC = StringUtil.toLong(matcher.group("heapUsageBfGC"));
+            long heapUsageBfGC = StringUtil.toBytes(matcher.group("heapUsageBfGC"));
             data.setHeapUsageBfGC(heapUsageBfGC);
-            long headUsageAfGC = StringUtil.toLong(matcher.group("headUsageAfGC"));
+            long headUsageAfGC = StringUtil.toBytes(matcher.group("headUsageAfGC"));
             data.setHeadUsageAfGC(headUsageAfGC);
-            long heapSize = StringUtil.toLong(matcher.group("heapSize"));
+            long heapSize = StringUtil.toBytes(matcher.group("heapSize"));
             data.setHeapSize(heapSize);
             double totalDuration = StringUtil.toDouble(matcher.group("totalDuration"));
             data.setTotalDuration(totalDuration);
