@@ -1,19 +1,17 @@
 package com.nexusy.glp.parser.impl;
 
 import com.nexusy.glp.data.SerialGCData;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static org.junit.Assert.*;
 
 /**
  * @author lanhuidong
  * @since 2016-12-08
  */
-public class SerialGCTest {
-
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+public class SerialGCTest extends GCLogLineParserTest {
 
     private SerialGCParser parser = new SerialGCParser();
 
@@ -22,23 +20,23 @@ public class SerialGCTest {
         String line = "2016-12-07T14:50:54.719-0800: 0.092: [GC (Allocation Failure) 0.092: [DefNew: 5656K->0K(6144K),"
                 + " 0.0078575 secs] 9752K->9644K(19840K), 0.0079072 secs] [Times: user=0.01 sys=0.00, real=0.01 secs] ";
         SerialGCData data = parser.parse(line);
-        Assert.assertNotNull(data);
+        assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-07T14:50:54.719-0800", formatter);
-        Assert.assertEquals(dateTime, data.getDateTime());
-        Assert.assertEquals(92L, data.getUptime());
-        Assert.assertEquals("GC", data.getFlag());
-        Assert.assertEquals("Allocation Failure", data.getCause());
-        Assert.assertEquals(5656L, data.getYoungGenUsageBfGC());
-        Assert.assertEquals(0L, data.getYoungGenUsageAfGC());
-        Assert.assertEquals(6144L, data.getYongGenSize());
-        Assert.assertEquals(0.0078575, data.getMinorGCDuration(), 0.00000001);
-        Assert.assertEquals(9752L, data.getHeapUsageBfGC());
-        Assert.assertEquals(9644L, data.getHeadUsageAfGC());
-        Assert.assertEquals(19840L, data.getHeapSize());
-        Assert.assertEquals(0.0079072, data.getTotalDuration(), 0.00000001);
-        Assert.assertEquals(0.01, data.getUserTime(), 0.001);
-        Assert.assertEquals(0.00, data.getSysTime(), 0.001);
-        Assert.assertEquals(0.01, data.getRealTime(), 0.001);
+        assertEquals(dateTime, data.getDateTime());
+        assertEquals(92L, data.getUptime());
+        assertEquals("GC", data.getFlag());
+        assertEquals("Allocation Failure", data.getCause());
+        assertEquals(5656L, data.getYoungGenUsageBfGC());
+        assertEquals(0L, data.getYoungGenUsageAfGC());
+        assertEquals(6144L, data.getYongGenSize());
+        assertEquals(0.0078575, data.getMinorGCDuration(), 0.00000001);
+        assertEquals(9752L, data.getHeapUsageBfGC());
+        assertEquals(9644L, data.getHeadUsageAfGC());
+        assertEquals(19840L, data.getHeapSize());
+        assertEquals(0.0079072, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.01, data.getUserTime(), 0.001);
+        assertEquals(0.00, data.getSysTime(), 0.001);
+        assertEquals(0.01, data.getRealTime(), 0.001);
     }
 
     @Test
@@ -48,30 +46,30 @@ public class SerialGCTest {
                 + "14864K->4523K(19840K), [Metaspace: 2731K->2731K(1056768K)], 0.0033682 secs] "
                 + "[Times: user=0.00 sys=0.00, real=0.01 secs] ";
         SerialGCData data = parser.parse(line);
-        Assert.assertNotNull(data);
+        assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-07T14:50:54.729-0800", formatter);
-        Assert.assertEquals(dateTime, data.getDateTime());
-        Assert.assertEquals(102L, data.getUptime());
-        Assert.assertEquals("GC", data.getFlag());
-        Assert.assertEquals("Allocation Failure", data.getCause());
-        Assert.assertEquals(5219L, data.getYoungGenUsageBfGC());
-        Assert.assertEquals(5219L, data.getYoungGenUsageAfGC());
-        Assert.assertEquals(6144L, data.getYongGenSize());
-        Assert.assertEquals(0.0000334, data.getMinorGCDuration(), 0.00000001);
-        Assert.assertEquals(9644L, data.getOldGenUsageBfGC());
-        Assert.assertEquals(4523L, data.getOldGenUsageAfGC());
-        Assert.assertEquals(13696L, data.getOldSize());
-        Assert.assertEquals(0.0032665, data.getFullGCDuration(), 0.00000001);
-        Assert.assertEquals(14864L, data.getHeapUsageBfGC());
-        Assert.assertEquals(4523L, data.getHeadUsageAfGC());
-        Assert.assertEquals(19840L, data.getHeapSize());
-        Assert.assertEquals(2731L, data.getMetaspaceUsageBfGC());
-        Assert.assertEquals(2731L, data.getMetaspaceUsageAfGC());
-        Assert.assertEquals(1056768L, data.getMetaspaceSize());
-        Assert.assertEquals(0.0033682, data.getTotalDuration(), 0.00000001);
-        Assert.assertEquals(0.00, data.getUserTime(), 0.001);
-        Assert.assertEquals(0.00, data.getSysTime(), 0.001);
-        Assert.assertEquals(0.01, data.getRealTime(), 0.001);
+        assertEquals(dateTime, data.getDateTime());
+        assertEquals(102L, data.getUptime());
+        assertEquals("GC", data.getFlag());
+        assertEquals("Allocation Failure", data.getCause());
+        assertEquals(5219L, data.getYoungGenUsageBfGC());
+        assertEquals(5219L, data.getYoungGenUsageAfGC());
+        assertEquals(6144L, data.getYongGenSize());
+        assertEquals(0.0000334, data.getMinorGCDuration(), 0.00000001);
+        assertEquals(9644L, data.getOldGenUsageBfGC());
+        assertEquals(4523L, data.getOldGenUsageAfGC());
+        assertEquals(13696L, data.getOldSize());
+        assertEquals(0.0032665, data.getFullGCDuration(), 0.00000001);
+        assertEquals(14864L, data.getHeapUsageBfGC());
+        assertEquals(4523L, data.getHeadUsageAfGC());
+        assertEquals(19840L, data.getHeapSize());
+        assertEquals(2731L, data.getMetaspaceUsageBfGC());
+        assertEquals(2731L, data.getMetaspaceUsageAfGC());
+        assertEquals(1056768L, data.getMetaspaceSize());
+        assertEquals(0.0033682, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.00, data.getUserTime(), 0.001);
+        assertEquals(0.00, data.getSysTime(), 0.001);
+        assertEquals(0.01, data.getRealTime(), 0.001);
     }
 
     @Test
@@ -81,26 +79,26 @@ public class SerialGCTest {
                 + "3707K->3695K(19840K), [Metaspace: 2581K->2581K(1056768K)], 0.0047817 secs] "
                 + "[Times: user=0.00 sys=0.00, real=0.00 secs] ";
         SerialGCData data = parser.parse(line);
-        Assert.assertNotNull(data);
+        assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T08:40:17.994+0800", formatter);
-        Assert.assertEquals(dateTime, data.getDateTime());
-        Assert.assertEquals(1030, data.getUptime());
-        Assert.assertEquals("Full GC", data.getFlag());
-        Assert.assertEquals("Allocation Failure", data.getCause());
-        Assert.assertEquals(3707L, data.getOldGenUsageBfGC());
-        Assert.assertEquals(3695L, data.getOldGenUsageAfGC());
-        Assert.assertEquals(13696L, data.getOldSize());
-        Assert.assertEquals(0.0047268, data.getFullGCDuration(), 0.00000001);
-        Assert.assertEquals(3707L, data.getHeapUsageBfGC());
-        Assert.assertEquals(3695L, data.getHeadUsageAfGC());
-        Assert.assertEquals(19840L, data.getHeapSize());
-        Assert.assertEquals(2581L, data.getMetaspaceUsageBfGC());
-        Assert.assertEquals(2581L, data.getMetaspaceUsageAfGC());
-        Assert.assertEquals(1056768L, data.getMetaspaceSize());
-        Assert.assertEquals(0.0047817, data.getTotalDuration(), 0.00000001);
-        Assert.assertEquals(0.00, data.getUserTime(), 0.001);
-        Assert.assertEquals(0.00, data.getSysTime(), 0.001);
-        Assert.assertEquals(0.00, data.getRealTime(), 0.001);
+        assertEquals(dateTime, data.getDateTime());
+        assertEquals(1030, data.getUptime());
+        assertEquals("Full GC", data.getFlag());
+        assertEquals("Allocation Failure", data.getCause());
+        assertEquals(3707L, data.getOldGenUsageBfGC());
+        assertEquals(3695L, data.getOldGenUsageAfGC());
+        assertEquals(13696L, data.getOldSize());
+        assertEquals(0.0047268, data.getFullGCDuration(), 0.00000001);
+        assertEquals(3707L, data.getHeapUsageBfGC());
+        assertEquals(3695L, data.getHeadUsageAfGC());
+        assertEquals(19840L, data.getHeapSize());
+        assertEquals(2581L, data.getMetaspaceUsageBfGC());
+        assertEquals(2581L, data.getMetaspaceUsageAfGC());
+        assertEquals(1056768L, data.getMetaspaceSize());
+        assertEquals(0.0047817, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.00, data.getUserTime(), 0.001);
+        assertEquals(0.00, data.getSysTime(), 0.001);
+        assertEquals(0.00, data.getRealTime(), 0.001);
     }
 
     @Test
@@ -109,23 +107,23 @@ public class SerialGCTest {
                 + "DefNew: 5122K->0K(6144K), 0.0031337 secs] 9675K->9673K(19840K), 0.0033012 secs] "
                 + "[Times: user=0.00 sys=0.00, real=0.00 secs] ";
         SerialGCData data = parser.parse(line);
-        Assert.assertNotNull(data);
+        assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T09:50:53.521+0800", formatter);
-        Assert.assertEquals(dateTime, data.getDateTime());
-        Assert.assertEquals(3596L, data.getUptime());
-        Assert.assertEquals("GC", data.getFlag());
-        Assert.assertNull(data.getCause());
-        Assert.assertEquals(5122L, data.getYoungGenUsageBfGC());
-        Assert.assertEquals(0L, data.getYoungGenUsageAfGC());
-        Assert.assertEquals(6144L, data.getYongGenSize());
-        Assert.assertEquals(0.0031337, data.getMinorGCDuration(), 0.00000001);
-        Assert.assertEquals(9675L, data.getHeapUsageBfGC());
-        Assert.assertEquals(9673L, data.getHeadUsageAfGC());
-        Assert.assertEquals(19840L, data.getHeapSize());
-        Assert.assertEquals(0.0033012, data.getTotalDuration(), 0.00000001);
-        Assert.assertEquals(0.00, data.getUserTime(), 0.001);
-        Assert.assertEquals(0.00, data.getSysTime(), 0.001);
-        Assert.assertEquals(0.00, data.getRealTime(), 0.001);
+        assertEquals(dateTime, data.getDateTime());
+        assertEquals(3596L, data.getUptime());
+        assertEquals("GC", data.getFlag());
+        assertNull(data.getCause());
+        assertEquals(5122L, data.getYoungGenUsageBfGC());
+        assertEquals(0L, data.getYoungGenUsageAfGC());
+        assertEquals(6144L, data.getYongGenSize());
+        assertEquals(0.0031337, data.getMinorGCDuration(), 0.00000001);
+        assertEquals(9675L, data.getHeapUsageBfGC());
+        assertEquals(9673L, data.getHeadUsageAfGC());
+        assertEquals(19840L, data.getHeapSize());
+        assertEquals(0.0033012, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.00, data.getUserTime(), 0.001);
+        assertEquals(0.00, data.getSysTime(), 0.001);
+        assertEquals(0.00, data.getRealTime(), 0.001);
     }
 
     @Test
@@ -135,30 +133,30 @@ public class SerialGCTest {
                 + "[Tenured: 12745K->3529K(13696K), 0.0076335 secs] 13893K->3529K(19840K), "
                 + "[Perm : 2524K->2524K(21248K)], 0.0077254 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] ";
         SerialGCData data = parser.parse(line);
-        Assert.assertNotNull(data);
+        assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T09:43:00.637+0800", formatter);
-        Assert.assertEquals(dateTime, data.getDateTime());
-        Assert.assertEquals(157L, data.getUptime());
-        Assert.assertEquals("GC", data.getFlag());
-        Assert.assertNull(data.getCause());
-        Assert.assertEquals(1147L, data.getYoungGenUsageBfGC());
-        Assert.assertEquals(1147L, data.getYoungGenUsageAfGC());
-        Assert.assertEquals(6144L, data.getYongGenSize());
-        Assert.assertEquals(0.0000193, data.getMinorGCDuration(), 0.00000001);
-        Assert.assertEquals(12745L, data.getOldGenUsageBfGC());
-        Assert.assertEquals(3529L, data.getOldGenUsageAfGC());
-        Assert.assertEquals(13696L, data.getOldSize());
-        Assert.assertEquals(0.0076335, data.getFullGCDuration(), 0.00000001);
-        Assert.assertEquals(13893L, data.getHeapUsageBfGC());
-        Assert.assertEquals(3529L, data.getHeadUsageAfGC());
-        Assert.assertEquals(19840L, data.getHeapSize());
-        Assert.assertEquals(2524L, data.getMetaspaceUsageBfGC());
-        Assert.assertEquals(2524L, data.getMetaspaceUsageAfGC());
-        Assert.assertEquals(21248L, data.getMetaspaceSize());
-        Assert.assertEquals(0.0077254, data.getTotalDuration(), 0.00000001);
-        Assert.assertEquals(0.02, data.getUserTime(), 0.001);
-        Assert.assertEquals(0.00, data.getSysTime(), 0.001);
-        Assert.assertEquals(0.02, data.getRealTime(), 0.001);
+        assertEquals(dateTime, data.getDateTime());
+        assertEquals(157L, data.getUptime());
+        assertEquals("GC", data.getFlag());
+        assertNull(data.getCause());
+        assertEquals(1147L, data.getYoungGenUsageBfGC());
+        assertEquals(1147L, data.getYoungGenUsageAfGC());
+        assertEquals(6144L, data.getYongGenSize());
+        assertEquals(0.0000193, data.getMinorGCDuration(), 0.00000001);
+        assertEquals(12745L, data.getOldGenUsageBfGC());
+        assertEquals(3529L, data.getOldGenUsageAfGC());
+        assertEquals(13696L, data.getOldSize());
+        assertEquals(0.0076335, data.getFullGCDuration(), 0.00000001);
+        assertEquals(13893L, data.getHeapUsageBfGC());
+        assertEquals(3529L, data.getHeadUsageAfGC());
+        assertEquals(19840L, data.getHeapSize());
+        assertEquals(2524L, data.getMetaspaceUsageBfGC());
+        assertEquals(2524L, data.getMetaspaceUsageAfGC());
+        assertEquals(21248L, data.getMetaspaceSize());
+        assertEquals(0.0077254, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.02, data.getUserTime(), 0.001);
+        assertEquals(0.00, data.getSysTime(), 0.001);
+        assertEquals(0.02, data.getRealTime(), 0.001);
     }
 
     @Test
@@ -167,25 +165,25 @@ public class SerialGCTest {
                 + "[Tenured: 3529K->3518K(13696K), 0.0095194 secs] 3529K->3518K(19840K), "
                 + "[Perm : 2524K->2523K(21248K)], 0.0095751 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] ";
         SerialGCData data = parser.parse(line);
-        Assert.assertNotNull(data);
+        assertNotNull(data);
         LocalDateTime dateTime = LocalDateTime.parse("2016-12-08T09:43:00.653+0800", formatter);
-        Assert.assertEquals(dateTime, data.getDateTime());
-        Assert.assertEquals(165, data.getUptime());
-        Assert.assertEquals("Full GC", data.getFlag());
-        Assert.assertNull(data.getCause());
-        Assert.assertEquals(3529L, data.getOldGenUsageBfGC());
-        Assert.assertEquals(3518L, data.getOldGenUsageAfGC());
-        Assert.assertEquals(13696L, data.getOldSize());
-        Assert.assertEquals(0.0095194, data.getFullGCDuration(), 0.00000001);
-        Assert.assertEquals(3529L, data.getHeapUsageBfGC());
-        Assert.assertEquals(3518L, data.getHeadUsageAfGC());
-        Assert.assertEquals(19840L, data.getHeapSize());
-        Assert.assertEquals(2524L, data.getMetaspaceUsageBfGC());
-        Assert.assertEquals(2523L, data.getMetaspaceUsageAfGC());
-        Assert.assertEquals(21248L, data.getMetaspaceSize());
-        Assert.assertEquals(0.0095751, data.getTotalDuration(), 0.00000001);
-        Assert.assertEquals(0.02, data.getUserTime(), 0.001);
-        Assert.assertEquals(0.00, data.getSysTime(), 0.001);
-        Assert.assertEquals(0.01, data.getRealTime(), 0.001);
+        assertEquals(dateTime, data.getDateTime());
+        assertEquals(165, data.getUptime());
+        assertEquals("Full GC", data.getFlag());
+        assertNull(data.getCause());
+        assertEquals(3529L, data.getOldGenUsageBfGC());
+        assertEquals(3518L, data.getOldGenUsageAfGC());
+        assertEquals(13696L, data.getOldSize());
+        assertEquals(0.0095194, data.getFullGCDuration(), 0.00000001);
+        assertEquals(3529L, data.getHeapUsageBfGC());
+        assertEquals(3518L, data.getHeadUsageAfGC());
+        assertEquals(19840L, data.getHeapSize());
+        assertEquals(2524L, data.getMetaspaceUsageBfGC());
+        assertEquals(2523L, data.getMetaspaceUsageAfGC());
+        assertEquals(21248L, data.getMetaspaceSize());
+        assertEquals(0.0095751, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.02, data.getUserTime(), 0.001);
+        assertEquals(0.00, data.getSysTime(), 0.001);
+        assertEquals(0.01, data.getRealTime(), 0.001);
     }
 }
