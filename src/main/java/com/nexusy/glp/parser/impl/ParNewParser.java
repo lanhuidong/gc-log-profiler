@@ -12,8 +12,10 @@ import java.util.regex.Pattern;
  */
 public class ParNewParser extends AbstractGCLogLineParser<ParNewData> {
 
-    private static final String regex = "\\[(?<flag>\\w+)"
+    private static final String regex = "\\[(?<flag>[a-zA-Z|\\s]+[a-zA-Z])"
+            + "("
             + "\\s\\((?<cause>[\\w|\\s]+)\\)"
+            + ")?"
             + ".*ParNew:\\s(?<youngUsageBfGC>\\d+\\w)"
             + "->(?<yongUsageAfGC>\\d+\\w)"
             + "\\((?<youngSize>\\d+\\w)\\)"
