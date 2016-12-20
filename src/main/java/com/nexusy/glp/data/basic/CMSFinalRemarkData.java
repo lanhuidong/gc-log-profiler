@@ -30,7 +30,10 @@ public class CMSFinalRemarkData extends GCData {
 
     private long heapSize;
 
-    private double duration;
+    /**
+     * Stop the World的持续时间
+     */
+    private double stwDuration;
 
     public CMSPhase getPhase() {
         return phase;
@@ -128,12 +131,12 @@ public class CMSFinalRemarkData extends GCData {
         this.heapSize = heapSize;
     }
 
-    public double getDuration() {
-        return duration;
+    public double getStwDuration() {
+        return stwDuration;
     }
 
-    public void setDuration(double duration) {
-        this.duration = duration;
+    public void setStwDuration(double stwDuration) {
+        this.stwDuration = stwDuration;
     }
 
 }

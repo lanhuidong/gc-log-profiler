@@ -33,7 +33,7 @@ public class SerialGCTest extends GCLogLineParserTest {
         assertEquals(9752L * 1024, data.getHeapUsageBfGC());
         assertEquals(9644L * 1024, data.getHeadUsageAfGC());
         assertEquals(19840L * 1024, data.getHeapSize());
-        assertEquals(0.0079072, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0079072, data.getStwDuration(), 0.00000001);
         assertEquals(0.01, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.01, data.getRealTime(), 0.001);
@@ -66,7 +66,7 @@ public class SerialGCTest extends GCLogLineParserTest {
         assertEquals(2731L * 1024, data.getMetaspaceUsageBfGC());
         assertEquals(2731L * 1024, data.getMetaspaceUsageAfGC());
         assertEquals(1056768L * 1024, data.getMetaspaceSize());
-        assertEquals(0.0033682, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0033682, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.01, data.getRealTime(), 0.001);
@@ -95,7 +95,7 @@ public class SerialGCTest extends GCLogLineParserTest {
         assertEquals(2581L * 1024, data.getMetaspaceUsageBfGC());
         assertEquals(2581L * 1024, data.getMetaspaceUsageAfGC());
         assertEquals(1056768L * 1024, data.getMetaspaceSize());
-        assertEquals(0.0047817, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0047817, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);
@@ -120,7 +120,7 @@ public class SerialGCTest extends GCLogLineParserTest {
         assertEquals(9675L * 1024, data.getHeapUsageBfGC());
         assertEquals(9673L * 1024, data.getHeadUsageAfGC());
         assertEquals(19840L * 1024, data.getHeapSize());
-        assertEquals(0.0033012, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0033012, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);
@@ -153,7 +153,7 @@ public class SerialGCTest extends GCLogLineParserTest {
         assertEquals(2524L * 1024, data.getMetaspaceUsageBfGC());
         assertEquals(2524L * 1024, data.getMetaspaceUsageAfGC());
         assertEquals(21248L * 1024, data.getMetaspaceSize());
-        assertEquals(0.0077254, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0077254, data.getStwDuration(), 0.00000001);
         assertEquals(0.02, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.02, data.getRealTime(), 0.001);
@@ -181,7 +181,7 @@ public class SerialGCTest extends GCLogLineParserTest {
         assertEquals(2524L * 1024, data.getMetaspaceUsageBfGC());
         assertEquals(2523L * 1024, data.getMetaspaceUsageAfGC());
         assertEquals(21248L * 1024, data.getMetaspaceSize());
-        assertEquals(0.0095751, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0095751, data.getStwDuration(), 0.00000001);
         assertEquals(0.02, data.getUserTime(), 0.001);
         assertEquals(0.01, data.getSysTime(), 0.001);
         assertEquals(0.01, data.getRealTime(), 0.001);

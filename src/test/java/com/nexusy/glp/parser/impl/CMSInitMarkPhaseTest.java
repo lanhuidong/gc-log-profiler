@@ -28,7 +28,7 @@ public class CMSInitMarkPhaseTest extends GCLogLineParserTest {
         assertEquals(20480L * 1024, data.getOldGenSize());
         assertEquals(7814L * 1024, data.getHeapUsage());
         assertEquals(29696L * 1024, data.getHeapSize());
-        assertEquals(0.0000744, data.getDuration(), 0.00000001);
+        assertEquals(0.0000744, data.getStwDuration(), 0.00000001);
         assertEquals(0.01, data.getUserTime(), 0.001);
         assertEquals(0.01, data.getSysTime(), 0.001);
         assertEquals(0.01, data.getRealTime(), 0.001);

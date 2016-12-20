@@ -93,7 +93,7 @@ public class SerialGCParser extends AbstractGCLogLineParser<SerialGCData> {
             }
 
             double totalDuration = StringUtil.toDouble(matcher.group("totalDuration"));
-            data.setTotalDuration(totalDuration);
+            data.setStwDuration(totalDuration);
         }
         return data;
     }

@@ -33,7 +33,7 @@ public class ParallelGCTest extends GCLogLineParserTest {
         assertEquals(7868L * 1024, data.getHeapUsageBfGC());
         assertEquals(7803L * 1024, data.getHeadUsageAfGC());
         assertEquals(18944L * 1024, data.getHeapSize());
-        assertEquals(0.0020042, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0020042, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);
@@ -63,7 +63,7 @@ public class ParallelGCTest extends GCLogLineParserTest {
         assertEquals(2583L * 1024, data.getMetaspaceUsageBfGC());
         assertEquals(2583L * 1024, data.getMetaspaceUsageAfGC());
         assertEquals(1056768L * 1024, data.getMetaspaceSize());
-        assertEquals(0.0076736, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0076736, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);
@@ -87,7 +87,7 @@ public class ParallelGCTest extends GCLogLineParserTest {
         assertEquals(13826L * 1024, data.getHeapUsageBfGC());
         assertEquals(13824L * 1024, data.getHeadUsageAfGC());
         assertEquals(18944L * 1024, data.getHeapSize());
-        assertEquals(0.0023574, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0023574, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);
@@ -117,7 +117,7 @@ public class ParallelGCTest extends GCLogLineParserTest {
         assertEquals(2523L * 1024, data.getMetaspaceUsageBfGC());
         assertEquals(2523L * 1024, data.getMetaspaceUsageAfGC());
         assertEquals(21504L * 1024, data.getMetaspaceSize());
-        assertEquals(0.0131346, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0131346, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);

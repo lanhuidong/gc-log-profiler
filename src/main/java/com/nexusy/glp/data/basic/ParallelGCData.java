@@ -57,7 +57,10 @@ public class ParallelGCData extends GCData {
      */
     private long heapSize;
 
-    private double totalDuration;
+    /**
+     * Stop the World的持续时间
+     */
+    private double stwDuration;
 
     private long metaspaceUsageBfGC;
 
@@ -161,12 +164,12 @@ public class ParallelGCData extends GCData {
         this.heapSize = heapSize;
     }
 
-    public double getTotalDuration() {
-        return totalDuration;
+    public double getStwDuration() {
+        return stwDuration;
     }
 
-    public void setTotalDuration(double totalDuration) {
-        this.totalDuration = totalDuration;
+    public void setStwDuration(double stwDuration) {
+        this.stwDuration = stwDuration;
     }
 
     public long getMetaspaceUsageBfGC() {

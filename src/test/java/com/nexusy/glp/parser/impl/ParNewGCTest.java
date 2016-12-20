@@ -34,7 +34,7 @@ public class ParNewGCTest extends GCLogLineParserTest {
         assertEquals(5001L * 1024, data.getHeapUsageBfGC());
         assertEquals(455L * 1024, data.getHeadUsageAfGC());
         assertEquals(19840L * 1024, data.getHeapSize());
-        assertEquals(0.0009109, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0009109, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);
@@ -58,7 +58,7 @@ public class ParNewGCTest extends GCLogLineParserTest {
         assertEquals(8004L * 1024, data.getHeapUsageBfGC());
         assertEquals(7658L * 1024, data.getHeadUsageAfGC());
         assertEquals(29696L * 1024, data.getHeapSize());
-        assertEquals(0.0106560, data.getTotalDuration(), 0.00000001);
+        assertEquals(0.0106560, data.getStwDuration(), 0.00000001);
         assertEquals(0.00, data.getUserTime(), 0.001);
         assertEquals(0.00, data.getSysTime(), 0.001);
         assertEquals(0.00, data.getRealTime(), 0.001);

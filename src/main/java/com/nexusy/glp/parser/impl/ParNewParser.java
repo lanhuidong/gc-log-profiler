@@ -55,7 +55,7 @@ public class ParNewParser extends AbstractGCLogLineParser<ParNewData> {
             long heapSize = StringUtil.toBytes(matcher.group("heapSize"));
             data.setHeapSize(heapSize);
             double totalDuration = StringUtil.toDouble(matcher.group("totalDuration"));
-            data.setTotalDuration(totalDuration);
+            data.setStwDuration(totalDuration);
         }
         return data;
     }

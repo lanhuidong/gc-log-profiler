@@ -37,7 +37,7 @@ public class CMSInitMarkParser extends AbstractGCLogLineParser<CMSInitialMarkDat
             data.setHeapSize(heapSize);
 
             double duration = StringUtil.toDouble(matcher.group("duration"));
-            data.setDuration(duration);
+            data.setStwDuration(duration);
         }
 
         return data;

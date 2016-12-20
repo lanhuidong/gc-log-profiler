@@ -62,7 +62,7 @@ public class CMSFinalRemarkParser extends AbstractGCLogLineParser<CMSFinalRemark
             data.setHeapSize(heapSize);
 
             double duration = StringUtil.toDouble(matcher.group("duration"));
-            data.setDuration(duration);
+            data.setStwDuration(duration);
         }
         return data;
     }

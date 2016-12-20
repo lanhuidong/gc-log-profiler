@@ -81,7 +81,7 @@ public class ParallelGCParser extends AbstractGCLogLineParser<ParallelGCData> {
             }
 
             double totalDuration = StringUtil.toDouble(matcher.group("totalDuration"));
-            data.setTotalDuration(totalDuration);
+            data.setStwDuration(totalDuration);
         }
         return data;
     }

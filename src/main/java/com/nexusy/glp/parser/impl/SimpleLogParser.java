@@ -113,8 +113,8 @@ public class SimpleLogParser implements GCLogParser {
                 promotionSize += yongCleanSize - heapCleanSize;
                 promotionTimes++;
             }
-            if (data.getTotalDuration() > maxGCPause) {
-                maxGCPause = data.getTotalDuration();
+            if (data.getStwDuration() > maxGCPause) {
+                maxGCPause = data.getStwDuration();
             }
         }
         highLevelData.setMaxGCPause(maxGCPause);
@@ -125,8 +125,8 @@ public class SimpleLogParser implements GCLogParser {
     private void processCMSInitialMarkDatas(HighLevelData highLevelData, List<CMSInitialMarkData> cmsInitialMarkDatas) {
         double maxGCPause = highLevelData.getMaxGCPause();
         for (CMSInitialMarkData data : cmsInitialMarkDatas) {
-            if (data.getDuration() > maxGCPause) {
-                maxGCPause = data.getDuration();
+            if (data.getStwDuration() > maxGCPause) {
+                maxGCPause = data.getStwDuration();
             }
         }
         highLevelData.setMaxGCPause(maxGCPause);
@@ -135,8 +135,8 @@ public class SimpleLogParser implements GCLogParser {
     private void processCMSFinalRemarkDatas(HighLevelData highLevelData, List<CMSFinalRemarkData> cmsFinalRemarkDatas) {
         double maxGCPause = highLevelData.getMaxGCPause();
         for (CMSFinalRemarkData data : cmsFinalRemarkDatas) {
-            if (data.getDuration() > maxGCPause) {
-                maxGCPause = data.getDuration();
+            if (data.getStwDuration() > maxGCPause) {
+                maxGCPause = data.getStwDuration();
             }
         }
         highLevelData.setMaxGCPause(maxGCPause);
@@ -150,8 +150,8 @@ public class SimpleLogParser implements GCLogParser {
         long promotionTimes = 0;
         long minorGCTimes = 0;
         for (ParallelGCData data : parallelGCDatas) {
-            if (data.getTotalDuration() > maxGCPause) {
-                maxGCPause = data.getTotalDuration();
+            if (data.getStwDuration() > maxGCPause) {
+                maxGCPause = data.getStwDuration();
             }
             if (data.getOldSize() == 0) {  //Minor GC
                 minorGCTimes++;
@@ -165,8 +165,8 @@ public class SimpleLogParser implements GCLogParser {
                     promotionSize += yongCleanSize - heapCleanSize;
                     promotionTimes++;
                 }
-                if (data.getTotalDuration() > maxGCPause) {
-                    maxGCPause = data.getTotalDuration();
+                if (data.getStwDuration() > maxGCPause) {
+                    maxGCPause = data.getStwDuration();
                 }
             }
         }
@@ -185,8 +185,8 @@ public class SimpleLogParser implements GCLogParser {
         long promotionTimes = 0;
         long minorGCTimes = 0;
         for (SerialGCData data : serialGCDatas) {
-            if (data.getTotalDuration() > maxGCPause) {
-                maxGCPause = data.getTotalDuration();
+            if (data.getStwDuration() > maxGCPause) {
+                maxGCPause = data.getStwDuration();
             }
             if (data.getOldSize() == 0) {  //Minor GC
                 minorGCTimes++;
@@ -200,8 +200,8 @@ public class SimpleLogParser implements GCLogParser {
                     promotionSize += yongCleanSize - heapCleanSize;
                     promotionTimes++;
                 }
-                if (data.getTotalDuration() > maxGCPause) {
-                    maxGCPause = data.getTotalDuration();
+                if (data.getStwDuration() > maxGCPause) {
+                    maxGCPause = data.getStwDuration();
                 }
             }
         }
