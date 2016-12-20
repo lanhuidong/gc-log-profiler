@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.CMSConcurrentData;
+import com.nexusy.glp.data.basic.CMSConcurrentData;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

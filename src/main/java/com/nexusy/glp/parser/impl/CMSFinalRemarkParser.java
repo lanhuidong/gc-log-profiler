@@ -1,7 +1,7 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.CMSFinalRemarkData;
-import com.nexusy.glp.data.CMSPhase;
+import com.nexusy.glp.data.basic.CMSFinalRemarkData;
+import com.nexusy.glp.data.basic.CMSPhase;
 import com.nexusy.glp.util.StringUtil;
 
 import java.util.regex.Matcher;

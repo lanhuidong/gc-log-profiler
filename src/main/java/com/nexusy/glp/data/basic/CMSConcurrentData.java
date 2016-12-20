@@ -1,4 +1,4 @@
-package com.nexusy.glp.data;
+package com.nexusy.glp.data.basic;
 
 /**
  * 由于CMS-concurrent-mark, CMS-concurrent-preclean, CMS-concurrent-abortable-preclean, CMS-concurrent-sweep,

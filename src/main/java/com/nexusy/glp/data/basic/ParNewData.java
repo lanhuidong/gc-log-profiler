@@ -1,12 +1,10 @@
-package com.nexusy.glp.data;
+package com.nexusy.glp.data.basic;
 
 /**
- * Serial GC日志相关的数据
- *
  * @author lanhuidong
  * @since 2016-12-07
  */
-public class SerialGCData extends GCData {
+public class ParNewData extends GCData {
 
     /**
      * 区分Minor GC和Full GC
@@ -40,14 +38,6 @@ public class SerialGCData extends GCData {
 
     private double minorGCDuration;
 
-    private long oldGenUsageBfGC;
-
-    private long oldGenUsageAfGC;
-
-    private long oldSize;
-
-    private double fullGCDuration;
-
     /**
      * 垃圾收集前堆的使用量
      */
@@ -64,12 +54,6 @@ public class SerialGCData extends GCData {
     private long heapSize;
 
     private double totalDuration;
-
-    private long metaspaceUsageBfGC;
-
-    private long metaspaceUsageAfGC;
-
-    private long metaspaceSize;
 
     public String getFlag() {
         return flag;
@@ -127,38 +111,6 @@ public class SerialGCData extends GCData {
         this.minorGCDuration = minorGCDuration;
     }
 
-    public long getOldGenUsageBfGC() {
-        return oldGenUsageBfGC;
-    }
-
-    public void setOldGenUsageBfGC(long oldGenUsageBfGC) {
-        this.oldGenUsageBfGC = oldGenUsageBfGC;
-    }
-
-    public long getOldGenUsageAfGC() {
-        return oldGenUsageAfGC;
-    }
-
-    public void setOldGenUsageAfGC(long oldGenUsageAfGC) {
-        this.oldGenUsageAfGC = oldGenUsageAfGC;
-    }
-
-    public long getOldSize() {
-        return oldSize;
-    }
-
-    public void setOldSize(long oldSize) {
-        this.oldSize = oldSize;
-    }
-
-    public double getFullGCDuration() {
-        return fullGCDuration;
-    }
-
-    public void setFullGCDuration(double fullGCDuration) {
-        this.fullGCDuration = fullGCDuration;
-    }
-
     public long getHeapUsageBfGC() {
         return heapUsageBfGC;
     }
@@ -189,30 +141,6 @@ public class SerialGCData extends GCData {
 
     public void setTotalDuration(double totalDuration) {
         this.totalDuration = totalDuration;
-    }
-
-    public long getMetaspaceUsageBfGC() {
-        return metaspaceUsageBfGC;
-    }
-
-    public void setMetaspaceUsageBfGC(long metaspaceUsageBfGC) {
-        this.metaspaceUsageBfGC = metaspaceUsageBfGC;
-    }
-
-    public long getMetaspaceUsageAfGC() {
-        return metaspaceUsageAfGC;
-    }
-
-    public void setMetaspaceUsageAfGC(long metaspaceUsageAfGC) {
-        this.metaspaceUsageAfGC = metaspaceUsageAfGC;
-    }
-
-    public long getMetaspaceSize() {
-        return metaspaceSize;
-    }
-
-    public void setMetaspaceSize(long metaspaceSize) {
-        this.metaspaceSize = metaspaceSize;
     }
 
 }

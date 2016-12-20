@@ -1,7 +1,7 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.*;
 import com.nexusy.glp.data.advanced.HighLevelData;
+import com.nexusy.glp.data.basic.*;
 import com.nexusy.glp.parser.GCLogParser;
 
 import java.io.*;

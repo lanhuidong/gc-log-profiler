@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.SerialGCData;
+import com.nexusy.glp.data.basic.SerialGCData;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

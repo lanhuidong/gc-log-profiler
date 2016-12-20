@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.CMSInitialMarkData;
+import com.nexusy.glp.data.basic.CMSInitialMarkData;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.ParallelGCData;
+import com.nexusy.glp.data.basic.ParallelGCData;
 import com.nexusy.glp.util.StringUtil;
 
 import java.util.regex.Matcher;

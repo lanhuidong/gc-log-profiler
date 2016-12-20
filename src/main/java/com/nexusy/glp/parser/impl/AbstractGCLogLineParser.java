@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser.impl;
 
-import com.nexusy.glp.data.GCData;
+import com.nexusy.glp.data.basic.GCData;
 import com.nexusy.glp.parser.GCLogLineParser;
 import com.nexusy.glp.util.StringUtil;
 

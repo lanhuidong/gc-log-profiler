@@ -1,4 +1,4 @@
-package com.nexusy.glp.data;
+package com.nexusy.glp.data.basic;
 
 import java.time.LocalDateTime;
 
