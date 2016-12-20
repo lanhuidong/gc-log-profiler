@@ -1,6 +1,6 @@
 package com.nexusy.glp.parser;
 
-import com.nexusy.glp.data.advanced.HighLevelData;
+import com.nexusy.glp.data.basic.BasicData;
 
 import java.io.File;
 
@@ -10,5 +10,5 @@ import java.io.File;
  */
 public interface GCLogParser {
 
-    HighLevelData parse(File gcLogFile);
+    BasicData parse(File gcLogFile);
 }
