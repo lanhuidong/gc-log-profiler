@@ -20,6 +20,10 @@
 
     <mvc:resources mapping="/js/**" location="/js/"/>
 
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+    </bean>
+
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/"/>
         <property name="defaultEncoding" value="UTF-8"/>
