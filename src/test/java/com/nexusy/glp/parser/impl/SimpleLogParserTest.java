@@ -4,6 +4,7 @@ import com.nexusy.glp.analyzer.DefaultGCAnalyzer;
 import com.nexusy.glp.data.advanced.HighLevelData;
 import com.nexusy.glp.data.basic.BasicData;
 import com.nexusy.glp.parser.GCLogParser;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -19,6 +20,7 @@ public class SimpleLogParserTest {
     private DefaultGCAnalyzer analyzer = new DefaultGCAnalyzer();
 
     @Test
+    @Ignore
     public void test() {
         File file = new File("/Users/lanhuidong/Documents/GCLogs/cms.log.2");
         BasicData basicData = parser.parse(file);

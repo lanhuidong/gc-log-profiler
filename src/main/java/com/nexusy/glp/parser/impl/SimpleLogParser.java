@@ -3,7 +3,10 @@ package com.nexusy.glp.parser.impl;
 import com.nexusy.glp.data.basic.*;
 import com.nexusy.glp.parser.GCLogParser;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +29,14 @@ public class SimpleLogParser implements GCLogParser {
     private SerialGCParser serialGCParser = new SerialGCParser();
 
     @Override
-    public BasicData parse(File gcLogFile) {
+    public BasicData parse(InputStream in) {
         List<ParNewData> parNewDatas = null;
         List<CMSConcurrentData> cmsConcurrentDatas = null;
         List<CMSFinalRemarkData> cmsFinalRemarkDatas = null;
         List<CMSInitialMarkData> cmsInitialMarkDatas = null;
         List<ParallelGCData> parallelGCDatas = null;
         List<SerialGCData> serialGCDatas = null;
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(gcLogFile)))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.contains("ParNew:")) {
