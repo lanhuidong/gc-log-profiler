@@ -11,5 +11,5 @@ public enum GCName {
     SerialOld,
     ParallelScavenge,
     ParNew,
-    Serial
+    DefNew
 }
