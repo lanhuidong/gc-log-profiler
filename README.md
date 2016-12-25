@@ -1,6 +1,9 @@
 # gc-log-profiler
 A HotSpot GC Log profiler.
 
+## 界面截图(完善中...)
+![界面](http://bill.nexusy.com/nba/gc-log-web.png)
+
 ## 使用条件
 * 仅支持HotSpot VM
 * 仅支持JDK1.7, JDK1.8
