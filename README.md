@@ -8,6 +8,15 @@ A HotSpot GC Log profiler.
 * GC日志命令行参数：-XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+UseSerialGC
 * GC日志命令行参数：-XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+UseParallelOldGC
 
+## 支持的GC组合
+|   Young Generation   |   Old Generation   |
+|:--------------------:|:------------------:|
+|          G1          |        G1          |
+|        ParNew        |        CMS         |
+|   Parallel Scavenge  |    Parallel Old    |
+|   Parallel Scavenge  |     Serial Old     |
+|        DefNew        |     Serial Old     |
+
 ## 本项目不支持以下GC组合日志的分析
 * ~~-XX:+UseParNewGC = ParNew + Serial old，该组合已不建议使用，未来版本可能被删除~~
 * ~~-XX:+UseConcMarkSweepGC -XX:-UseParNewGC = DefNew + CMS，该组合已不建议使用，未来版本可能被删除~~
