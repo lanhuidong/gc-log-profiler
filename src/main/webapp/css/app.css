@@ -1,0 +1,11 @@
+.summary-box{margin:5px 15px;border-radius:3px;box-shadow:0 1px 1px rgba(0,0,0,0.1)}
+.summary-head{border-bottom:1px solid #f4f4f4;padding:10px;font-size:18px}
+.summary-item-box{padding:10px}
+.summary-item{float:left;width:33%;margin:4px 0}
+.chart-box{width:50%;float:left}
+.chart-div{margin:5px 15px;border-radius:3px;box-shadow:0 1px 1px rgba(0,0,0,0.1)}
+.color-1{border-top:3px solid #dd4b39;}
+.color-2{border-top:3px solid #3c8dbc;}
+.color-3{border-top:3px solid #f39c12;}
+.float-left{float:left;}
+.clearfix{clear:both}

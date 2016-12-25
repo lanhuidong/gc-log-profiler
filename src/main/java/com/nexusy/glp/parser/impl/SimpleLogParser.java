@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author lanhuidong
@@ -28,66 +27,68 @@ public class SimpleLogParser implements GCLogParser {
 
     private SerialGCParser serialGCParser = new SerialGCParser();
 
+    private CommandLineParser commandLineParser = new CommandLineParser();
+
     @Override
     public BasicData parse(InputStream in) {
-        List<ParNewData> parNewDatas = null;
-        List<CMSConcurrentData> cmsConcurrentDatas = null;
-        List<CMSFinalRemarkData> cmsFinalRemarkDatas = null;
-        List<CMSInitialMarkData> cmsInitialMarkDatas = null;
-        List<ParallelGCData> parallelGCDatas = null;
-        List<SerialGCData> serialGCDatas = null;
+        BasicData basicData = new BasicData();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.contains("ParNew:")) {
-                    ParNewData data = parNewParser.parse(line);
-                    if (parNewDatas == null) {
-                        parNewDatas = new ArrayList<>();
-                    }
-                    parNewDatas.add(data);
-                } else if (line.contains("CMS-concurrent-")) {
-                    CMSConcurrentData data = cmsConcParser.parse(line);
-                    if (cmsConcurrentDatas == null) {
-                        cmsConcurrentDatas = new ArrayList<>();
-                    }
-                    cmsConcurrentDatas.add(data);
-                } else if (line.contains("CMS-remark")) {
-                    CMSFinalRemarkData data = cmsFinalRemarkParser.parse(line);
-                    if (cmsFinalRemarkDatas == null) {
-                        cmsFinalRemarkDatas = new ArrayList<>();
-                    }
-                    cmsFinalRemarkDatas.add(data);
-                } else if (line.contains("CMS-initial-mark")) {
-                    CMSInitialMarkData data = cmsInitMarkParser.parse(line);
-                    if (cmsInitialMarkDatas == null) {
-                        cmsInitialMarkDatas = new ArrayList<>();
-                    }
-                    cmsInitialMarkDatas.add(data);
-                } else if (line.contains("PSYoungGen") || line.contains("ParOldGen")) {
-                    ParallelGCData data = parallelGCParser.parse(line);
-                    if (parallelGCDatas == null) {
-                        parallelGCDatas = new ArrayList<>();
-                    }
-                    parallelGCDatas.add(data);
-                } else if (line.contains("DefNew") || line.contains("Tenured")) {
-                    SerialGCData data = serialGCParser.parse(line);
-                    if (serialGCDatas == null) {
-                        serialGCDatas = new ArrayList<>();
-                    }
-                    serialGCDatas.add(data);
+                if (basicData.getCommandLineData() != null) {
+                    selectParser(line, basicData);
+                } else if (line.contains("CommandLine flags")) {
+                    CommandLineData data = commandLineParser.parse(line);
+                    basicData.setCommandLineData(data);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BasicData basicData = new BasicData();
-        basicData.setSerialGCDatas(serialGCDatas);
-        basicData.setParallelGCDatas(parallelGCDatas);
-        basicData.setParNewDatas(parNewDatas);
-        basicData.setCmsInitialMarkDatas(cmsInitialMarkDatas);
-        basicData.setCmsConcurrentDatas(cmsConcurrentDatas);
-        basicData.setCmsFinalRemarkDatas(cmsFinalRemarkDatas);
         return basicData;
+    }
+
+    private void selectParser(String line, BasicData basicData) {
+        CommandLineData cmdData = basicData.getCommandLineData();
+        if (cmdData.getOldGCName() == GCName.ParallelOld && cmdData.getYoungGCName() == GCName.ParallelScavenge) {
+            // TODO: 2016/12/25  
+        } else if (cmdData.getOldGCName() == GCName.CMS && cmdData.getYoungGCName() == GCName.ParNew) {
+            if (line.contains("ParNew")) {
+                ParNewData data = parNewParser.parse(line);
+                if (basicData.getParNewDatas() == null) {
+                    basicData.setParNewDatas(new ArrayList<>());
+                }
+                basicData.getParNewDatas().add(data);
+            } else if (line.contains("CMS-concurrent-")) {
+                CMSConcurrentData data = cmsConcParser.parse(line);
+                if (basicData.getCmsConcurrentDatas() == null) {
+                    basicData.setCmsConcurrentDatas(new ArrayList<>());
+                }
+                basicData.getCmsConcurrentDatas().add(data);
+            } else if (line.contains("CMS-remark")) {
+                CMSFinalRemarkData data = cmsFinalRemarkParser.parse(line);
+                if (basicData.getCmsFinalRemarkDatas() == null) {
+                    basicData.setCmsFinalRemarkDatas(new ArrayList<>());
+                }
+                basicData.getCmsFinalRemarkDatas().add(data);
+            } else if (line.contains("CMS-initial-mark")) {
+                CMSInitialMarkData data = cmsInitMarkParser.parse(line);
+                if (basicData.getCmsInitialMarkDatas() == null) {
+                    basicData.setCmsInitialMarkDatas(new ArrayList<>());
+                }
+                basicData.getCmsInitialMarkDatas().add(data);
+            }
+        } else if (cmdData.getOldGCName() == GCName.G1 && cmdData.getYoungGCName() == GCName.G1) {
+            // TODO: 2016/12/25
+        } else if (cmdData.getOldGCName() == GCName.SerialOld && cmdData.getYoungGCName() == GCName.ParallelScavenge) {
+            // TODO: 2016/12/25  
+        } else if (cmdData.getOldGCName() == GCName.SerialOld && cmdData.getYoungGCName() == GCName.DefNew) {
+            SerialGCData data = serialGCParser.parse(line);
+            if (basicData.getSerialGCDatas() == null) {
+                basicData.setSerialGCDatas(new ArrayList<>());
+            }
+            basicData.getSerialGCDatas().add(data);
+        }
     }
 
 }

@@ -27,6 +27,7 @@ public class DefaultGCAnalyzer {
 
     public HighLevelData analyze(BasicData basicDatas) {
         HighLevelData data = new HighLevelData();
+        data.setCmdData(basicDatas.getCommandLineData());
         for (GCLogAnalyzer analyzer : analyzers) {
             analyzer.analyze(data, basicDatas);
         }

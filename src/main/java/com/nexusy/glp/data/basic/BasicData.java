@@ -1,6 +1,5 @@
 package com.nexusy.glp.data.basic;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -8,6 +7,8 @@ import java.util.List;
  * @since 2016-12-20
  */
 public class BasicData {
+
+    private CommandLineData commandLineData;
 
     private List<SerialGCData> serialGCDatas;
 
@@ -21,10 +22,15 @@ public class BasicData {
 
     private List<CMSFinalRemarkData> cmsFinalRemarkDatas;
 
+    public CommandLineData getCommandLineData() {
+        return commandLineData;
+    }
+
+    public void setCommandLineData(CommandLineData commandLineData) {
+        this.commandLineData = commandLineData;
+    }
+
     public List<SerialGCData> getSerialGCDatas() {
-        if (serialGCDatas == null) {
-            return Collections.emptyList();
-        }
         return serialGCDatas;
     }
 
@@ -33,9 +39,6 @@ public class BasicData {
     }
 
     public List<ParallelGCData> getParallelGCDatas() {
-        if (parallelGCDatas == null) {
-            return Collections.emptyList();
-        }
         return parallelGCDatas;
     }
 
@@ -44,9 +47,6 @@ public class BasicData {
     }
 
     public List<ParNewData> getParNewDatas() {
-        if (parNewDatas == null) {
-            return Collections.emptyList();
-        }
         return parNewDatas;
     }
 
@@ -55,9 +55,6 @@ public class BasicData {
     }
 
     public List<CMSInitialMarkData> getCmsInitialMarkDatas() {
-        if (cmsInitialMarkDatas == null) {
-            return Collections.emptyList();
-        }
         return cmsInitialMarkDatas;
     }
 
@@ -66,9 +63,6 @@ public class BasicData {
     }
 
     public List<CMSConcurrentData> getCmsConcurrentDatas() {
-        if (cmsConcurrentDatas == null) {
-            return Collections.emptyList();
-        }
         return cmsConcurrentDatas;
     }
 
@@ -77,9 +71,6 @@ public class BasicData {
     }
 
     public List<CMSFinalRemarkData> getCmsFinalRemarkDatas() {
-        if (cmsFinalRemarkDatas == null) {
-            return Collections.emptyList();
-        }
         return cmsFinalRemarkDatas;
     }
 

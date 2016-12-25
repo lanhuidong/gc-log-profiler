@@ -14,14 +14,18 @@ public class CMSGCAnalyzer extends AbstractGCAnalyzer {
     @Override
     public HighLevelData analyze(HighLevelData highLevelData, BasicData basicDatas) {
         double maxGCPause = highLevelData.getMaxGCPause();
-        for (CMSInitialMarkData data : basicDatas.getCmsInitialMarkDatas()) {
-            if (data.getStwDuration() > maxGCPause) {
-                maxGCPause = data.getStwDuration();
+        if (basicDatas.getCmsInitialMarkDatas() != null) {
+            for (CMSInitialMarkData data : basicDatas.getCmsInitialMarkDatas()) {
+                if (data.getStwDuration() > maxGCPause) {
+                    maxGCPause = data.getStwDuration();
+                }
             }
         }
-        for (CMSFinalRemarkData data : basicDatas.getCmsFinalRemarkDatas()) {
-            if (data.getStwDuration() > maxGCPause) {
-                maxGCPause = data.getStwDuration();
+        if (basicDatas.getCmsFinalRemarkDatas() != null) {
+            for (CMSFinalRemarkData data : basicDatas.getCmsFinalRemarkDatas()) {
+                if (data.getStwDuration() > maxGCPause) {
+                    maxGCPause = data.getStwDuration();
+                }
             }
         }
         highLevelData.setMaxGCPause(maxGCPause);
