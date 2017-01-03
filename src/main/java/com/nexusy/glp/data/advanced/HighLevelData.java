@@ -3,7 +3,9 @@ package com.nexusy.glp.data.advanced;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nexusy.glp.data.basic.CommandLineData;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,6 +48,11 @@ public class HighLevelData {
      * key为引发GC的原因，value为次数
      */
     private Map<String, Integer> causeMap = new HashMap<>();
+
+    /**
+     * 每秒提升的对象大小，单位：字节
+     */
+    List<Long> promotionPerSec = new ArrayList<>();
 
     @JsonProperty("cmd_data")
     public CommandLineData getCmdData() {
@@ -106,7 +113,8 @@ public class HighLevelData {
         return causeMap;
     }
 
-    public void setCauseMap(Map<String, Integer> causeMap) {
-        this.causeMap = causeMap;
+    @JsonProperty("promotion_per_sec")
+    public List<Long> getPromotionPerSec() {
+        return promotionPerSec;
     }
 }

@@ -23,6 +23,11 @@ public class ParNewGCAnalyzer extends AbstractGCAnalyzer {
             long startTime = parNewDatas.get(0).getUptime();
             long endTime = parNewDatas.get(size - 1).getUptime();
             highLevelData.setMinorGCDuration(endTime - startTime);
+            List<Long> promotionPerSec = highLevelData.getPromotionPerSec();
+            int minorGCDuration = (int) ((endTime - startTime) / 1000);
+            for (int i = 0; i < minorGCDuration; i++) {
+                promotionPerSec.add(0L);
+            }
             long promotionSize = 0;
             long promotionTimes = 0;
             Map<String, Integer> causeMap = highLevelData.getCauseMap();
@@ -32,6 +37,8 @@ public class ParNewGCAnalyzer extends AbstractGCAnalyzer {
                 if (yongCleanSize - heapCleanSize > 0) {
                     promotionSize += yongCleanSize - heapCleanSize;
                     promotionTimes++;
+                    int sec = (int) ((data.getUptime() - startTime) / 1000);
+                    promotionPerSec.set(sec, promotionPerSec.get(sec) + (yongCleanSize - heapCleanSize));
                 }
                 if (data.getStwDuration() > maxGCPause) {
                     maxGCPause = data.getStwDuration();

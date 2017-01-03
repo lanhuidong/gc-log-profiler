@@ -4,6 +4,7 @@ import com.nexusy.glp.data.advanced.HighLevelData;
 import com.nexusy.glp.data.basic.BasicData;
 import com.nexusy.glp.data.basic.SerialGCData;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +49,24 @@ public class SerialGCAnalyzer extends AbstractGCAnalyzer {
                     causeMap.put(data.getCause(), 1);
                 }
             }
+
+            List<Long> promotionPerSec = highLevelData.getPromotionPerSec();
+            int minorGCDuration = (int) ((endTime - startTime) / 1000);
+            for (int i = 0; i < minorGCDuration; i++) {
+                promotionPerSec.add(0L);
+            }
+
+            for (SerialGCData data : basicDatas.getSerialGCDatas()) {
+                if (data.getOldSize() == 0) {  //Minor GC
+                    long yongCleanSize = data.getYoungGenUsageBfGC() - data.getYoungGenUsageAfGC();
+                    long heapCleanSize = data.getHeapUsageBfGC() - data.getHeadUsageAfGC();
+                    if (yongCleanSize - heapCleanSize > 0) {
+                        int sec = (int) ((data.getUptime() - startTime) / 1000);
+                        promotionPerSec.set(sec, promotionPerSec.get(sec) + (yongCleanSize - heapCleanSize));
+                    }
+                }
+            }
+
             highLevelData.setMaxGCPause(maxGCPause);
             highLevelData.setMaxGCPause(maxGCPause);
             highLevelData.setMinorGCDuration(endTime - startTime);
